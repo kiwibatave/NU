@@ -1,0 +1,34 @@
+bc_platform_home:
+    path:    /{page}
+    defaults:
+        _controller: BCPlatformBundle:Advert:index
+        page:    1
+    requirements:
+        page:    \d*
+
+bc_platform_view:
+    path:    /advert/{id}
+    defaults:
+        _controller: BCPlatformBundle:Advert:view
+    requirements:
+        id: \d+
+
+bc_platform_add:
+    path:    /add
+    defaults:
+        _controller: BCPlatformBundle:Advert:add
+
+bc_platform_edit:
+    path:    /edit/{id}
+    defaults:
+        _controller: BCPlatformBundle:Advert:edit
+    requirements:
+        id: \d+
+
+bc_platform_delete:
+    path:    /delete/{id}
+    defaults:
+        _controller: BCPlatformBundle:Advert:delete
+    requirements:
+        id: \d+
+

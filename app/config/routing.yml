@@ -1,0 +1,7 @@
+bc_platform:
+    resource: "@BCPlatformBundle/Resources/config/routing.yml"
+    prefix:   /platform
+
+bc_core:
+    resource: "@BCCoreBundle/Resources/config/routing.yml"
+

@@ -1,0 +1,7 @@
+services:
+    bc_platform.antispam:
+        class: BC\PlatformBundle\Antispam\BCAntispam
+        arguments:
+            - "@mailer"
+            - %locale%
+            - 50

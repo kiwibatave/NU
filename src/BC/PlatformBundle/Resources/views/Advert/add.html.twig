@@ -1,0 +1,14 @@
+{# Vue du formulaire pour ajouter une annonce #}
+
+{% extends "BCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+
+    <h2>Ajouter une annonce</h2>
+
+    {{ include("BCPlatformBundle:Advert:form.html.twig") }}
+
+    <p>
+        Ajout immédiat sur la page d'accueil après validation du formulaire.
+    </p>
+{% endblock %}
