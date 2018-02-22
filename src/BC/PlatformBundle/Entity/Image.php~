@@ -1,0 +1,225 @@
+<?php
+
+namespace BC\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+// ajout du use pour le file 05/02/18
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Image
+ *
+ * @ORM\Table(name="bc_image")
+ * @ORM\Entity(repositoryClass="BC\PlatformBundle\Repository\ImageRepository")
+ */
+class Image
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
+
+    // Modif du 05/02/18
+    private $file;
+
+    // Modif du 06/02/18
+    private $temporaryFilename;
+
+    // Modif du 06/02/18
+    /**
+     * @ORM\PrepPersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        // Si il n'y a pas de fichier (champ facultatif), on ne fait rien
+        if (null === $this->file) {
+            return;
+        }
+
+        // Le nom du file est son id, on doit stocker aussi son extension
+        // Pour "faire propre", on doit renommer cet attr en "extension" non pas en "url"
+        $this->url = $this->file->guessExtension();
+
+        // On génére l'attr "alt" de la balise <img> à la value du nom du fichier sur le pc de l'internaute
+        $this->alt = $this->file->getClientOriginalName();
+    }
+
+    // Modif du 06/02/18
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        // Si il n'y a pas de fichier (champ facultatif), on ne fait rien
+        if (null === $this->file) {
+            return;
+        }
+        // Modif du 06/02/18
+        if (null !== $this->temporaryFilename) {
+            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->temporaryFilename;
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+        // On déplace le fichier envoyé dans le répertoire voulu
+        $this->file->move(
+            $this->getUploadRootDir(), // Répertoire de destination
+            $this->id.'.'.$this->url
+        );
+//        // On récupère le nom original du fichier
+//        $name = $this->file->getClientOriginalName();
+//
+//        // On déplace le fichier envoyé dans le répertoire voulu
+//        $this->file->move($this->getUploadRootDir(), $name);
+//
+//        // On save le nom du fichier dans notre attribut $url
+//        $this->url = $name;
+//
+//        // On crée également le futur attribut alt de notre balise <img>
+//        $this->alt = $name;
+    }
+
+    // Modif du 06/02/18
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload()
+    {
+        // On sauvegarde temporairement le nom du fichier (car dépendant de l'id)
+        $this->temporaryFilename = $this->getUploadRootDir().'/'.$this->url;
+    }
+
+    // Modif du 06/02/18
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        // En postremove, pas d'accès à l'id, donc on utilise la sauvegarde
+        if(file_exists($this->temporaryFilename)) {
+            // On suppr le fichier
+            unlink($this->temporaryFilename);
+        }
+    }
+
+    public function getUploadDir()
+    {
+        // On retourne le chemin relatif de l'img pour un navigateur (relatif au répertoire /web)
+        return 'uploads/img';
+    }
+
+    protected function getUploadRootDir()
+    {
+        // On retourne le chemin relatif vers l'img pour le php
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    // Modif du 06/02/18
+    public function getWebPath()
+    {
+        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getUrl();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Image
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set alt
+     *
+     * @param string $alt
+     *
+     * @return Image
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+
+        return $this;
+    }
+
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    public function getFile()
+
+    {
+        return $this->file;
+    }
+
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+
+        // modif du 06/02/18
+        if(null !== $this->url) {
+            // Sauvegarde de l'extension du fichier pour pouvoir le supprimer après
+            $this->temporaryFilename = $this->url;
+
+            // Et on réinitialise les valeurs pour url et alt
+            $this->url = null;
+            $this->alt = null;
+        }
+    }
+}

@@ -1,8 +1,80 @@
 {# Formulaire pour ajouter une annonce #}
-
-<h3>Formulaire d'annonce</h3>
-
-{# Vide pour le moment 04/01/18 #}
-<div class="well">
-    {# Formulaire ici #}
+<div class="row center-align">
+    <h3>Créer une annonce</h3>
 </div>
+{# modif 02/02/18 #}
+<div class="row center-align">
+    {# balise d'ouverture du form #}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Erreurs générales du form #}
+    {{ form_errors(form) }}
+    {# Génération du label + error + widget pour un champ #}
+    {# Motif du 05/02/18 #}
+    {% if form.date is defined %}
+        {{ form_row(form.date) }}
+    {% endif %}
+    {# Génération manuelle et éclatée #}
+    <div class="form-group">
+        {# Génération du label #}
+        <div class="row center-align">
+            <div class="col s6 offset-s3">
+                {{ form_label(form.title, "Le titre de votre annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+            </div>
+        </div>
+        {# Affichage des erreurs pour ce champ précis #}
+        {{ form_errors(form.title) }}
+
+        <div class="row center-align">
+            <div class="col s6 offset-s3">
+                {# Génération de l'input #}
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    {# Génération du champs content #}
+    <div class="form-group">
+        <div class="row center-align">
+            <div class="col s6 offset-s3">
+                {{ form_label(form.content, "Description de vote annonce", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.content) }}
+            {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+    <div class="row center-align">
+        <div class="col s6 offset-s3">
+            {{ form_row(form.author) }}
+        </div>
+    </div>
+    {# Motif du 05/02/18 #}
+    <div class="container">
+        {% if form.published is defined %}
+            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
+            <label for="filled-in-box">Publier</label>
+            {{ form_row(form.published) }}
+        {% endif %}
+    </div>
+
+    {# Géréation des champs Image 02/02/18 #}
+    {{ form_row (form.image) }}
+
+    {# Génération des champs Categories 02/02/18 #}
+    {{ form_row(form.categories) }}
+    <a href="#" id="add_category" class="waves-effect waves-light btn-large blue">Ajouter une catégorie</a>
+
+    {{ form_widget(form.startdate, {'attr': {'value' :'', 'placeholder' :'Début disponibilité'}}) }}
+    <input type="text" class="datepicker">
+
+    {{ form_row(form.enddate) }}
+    <input type="date" class="datepicker">
+
+    {# Pour l'input pas de label ou error, on affiche simplement le widget #}
+    {{ form_widget(form.save, {'attr': {'class': 'waves-effect waves-light btn-large blue'}}) }}
+
+    {# Génération des autres champs par encore écrits. Champs CSRF (automatique avec Symfony) et les champs type "hidden" #}
+    {{ form_rest(form) }}
+    {# Fermeture de la balise <form> du form HTML #}
+    {{ form_end(form) }}
+</div>
+

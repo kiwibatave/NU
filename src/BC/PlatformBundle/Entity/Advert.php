@@ -4,12 +4,23 @@ namespace BC\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use BC\PlatformBundle\Validator\Antiflood;
+//Ajout du use validator pour la sécurité des form 07/02/10
+use Symfony\Component\Validator\Constraints as Assert;
+// Ajout du use pour invalider certains contenus 07/02/18
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+// Ajout du use pour utilisation de la contrainte
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Advert
  *
- * @ORM\Table(name="advert")
+ * @ORM\Table(name="bc_advert")
  * @ORM\Entity(repositoryClass="BC\PlatformBundle\Repository\AdvertRepository")
+ * @ORM\HasLifecycleCallbacks()
+ *
+ * @UniqueEntity(fields="title", message="Une annonce existe déjà avec ce titre.") // Modif du 07/02/18
  */
 class Advert
 {
@@ -26,13 +37,15 @@ class Advert
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\DateTime() // Modif du 07/02/18
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, unique=true) // Modif du 07/02/18
+     * @Assert\Length(min=8) // Modif du 07/02/18
      */
     private $title;
 
@@ -40,13 +53,16 @@ class Advert
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
+     * @Assert\Length(min=2) // Modif du 07/02/18
      */
     private $author;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="string", length=255)
+     * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank() // Modif du 07/02/18
+     * @Antiflood() // Modif du 07/02/18
      */
     private $content;
 
@@ -55,32 +71,104 @@ class Advert
      */
     private $published = true;
 
-    // Test Relation one to one 11/01/18
+    // Modif 06/02/18
 
     /**
-     * @ORM\OnetoOne(targetEntity="BC\PlatformBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="BC\PlatformBundle\Entity\Image", cascade={"persist", "remove"})
+     * @Assert\Valid() // Modif du 07/02/18
      */
     private $image;
 
     /**
-     * @ORM\ManytoMany(targetEntity="BC\PlatformBundle\Entity\Category", cascade={"persist"})
-     * @ORM\JoinTable(name="advert_category")
+     * @ORM\ManyToMany(targetEntity="BC\PlatformBundle\Entity\Category", cascade={"persist"})
+     * @ORM\JoinTable(name="bc_advert_category")
      */
     private $categories;
 
     /**
      * @ORM\OneToMany(targetEntity="BC\PlatformBundle\Entity\Application", mappedBy="advert")
      */
-    private $applications;
+    private $applications; // Notez le « s », une annonce est liée à plusieurs candidatures
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(name="nb_applications", type="integer")
+     */
+    private $nbApplications = 0;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string",length=255, unique=true)
+     */
+    private $slug;
+
+    // modif datepicker 21/02/18
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startdate", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $startdate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="enddate", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $enddate;
+
 
     public function __construct()
     {
-        $this->date = new \DateTime();
+        $this->date = new \Datetime();
         $this->categories = new ArrayCollection();
         $this->applications = new ArrayCollection();
     }
 
     /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setUpdatedAt(new \Datetime());
+    }
+
+    public function increaseApplication()
+    {
+        $this->nbApplications++;
+    }
+
+    public function decreaseApplication()
+    {
+        $this->nbApplications--;
+    }
+
+    // Modif du 07/02/16
+    /*
+     * @Assert\Callback
+     */
+    public function isContenValid(ExecutionContextInterface $context)
+    {
+        $forbiddenWords = array('merde', 'putain');
+
+        // On vérifie que le contenu ne contient pas ces mots
+        if (preg_match('#'.implode('|', $forbiddenWords).'#', $this->getContent())) {
+            // Si la régle est enfreind, on définit l'erreur
+            $context
+                ->buildViolation('Contenu invalidé car mot interdit.')
+                ->atPath('content') // Attribut de l'objet enfreind
+                ->addViolation(); // déclenche l'erreur NE PAS OUBLIER
+        }
+    }
+    /**
+     * Get id
      *
      * @return int
      */
@@ -90,14 +178,21 @@ class Advert
     }
 
     /**
+     * Set date
+     *
      * @param \DateTime $date
+     *
+     * @return Advert
      */
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
+     * Get date
+     *
      * @return \DateTime
      */
     public function getDate()
@@ -106,14 +201,21 @@ class Advert
     }
 
     /**
+     * Set title
+     *
      * @param string $title
+     *
+     * @return Advert
      */
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
+     * Get title
+     *
      * @return string
      */
     public function getTitle()
@@ -122,14 +224,21 @@ class Advert
     }
 
     /**
+     * Set author
+     *
      * @param string $author
+     *
+     * @return Advert
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
+     * Get author
+     *
      * @return string
      */
     public function getAuthor()
@@ -138,14 +247,21 @@ class Advert
     }
 
     /**
+     * Set content
+     *
      * @param string $content
+     *
+     * @return Advert
      */
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
     /**
+     * Get content
+     *
      * @return string
      */
     public function getContent()
@@ -154,82 +270,234 @@ class Advert
     }
 
     /**
-     * @param bool $published
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Advert
      */
     public function setPublished($published)
     {
         $this->published = $published;
+        return $this;
     }
 
     /**
-     * @return bool
+     * Get published
+     *
+     * @return boolean
      */
     public function getPublished()
     {
         return $this->published;
     }
 
-    public function setImage(Image $image = null)
+    /**
+     * Set image
+     *
+     * @param \BC\PlatformBundle\Entity\Image $image
+     *
+     * @return Advert
+     */
+    public function setImage(\BC\PlatformBundle\Entity\Image $image = null)
     {
         $this->image = $image;
+        return $this;
     }
 
+    /**
+     * Get image
+     *
+     * @return \BC\PlatformBundle\Entity\Image
+     */
     public function getImage()
     {
         return $this->image;
     }
 
     /**
-     * @param Category $category
+     * Add category
+     *
+     * @param \BC\PlatformBundle\Entity\Category $category
+     *
+     * @return Advert
      */
-    public function addCategory(Category $category)
+    public function addCategory(\BC\PlatformBundle\Entity\Category $category)
     {
-        // Utilisation de l'arraycollection 12/01/18
         $this->categories[] = $category;
+        return $this;
     }
 
     /**
-     * @param Category $category
+     * Remove category
+     *
+     * @param \BC\PlatformBundle\Entity\Category $category
      */
-    public function removeCategory(Category $category)
+    public function removeCategory(\BC\PlatformBundle\Entity\Category $category)
     {
-        // Utilisation de la méthode de l'arrayCollection pour suppr une catégorie
         $this->categories->removeElement($category);
     }
 
     /**
-     * @return ArrayCollection
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
-        // On récupère les catégories
         return $this->categories;
     }
 
     /**
-     * @param Application $application
+     * Add application
+     *
+     * @param \BC\PlatformBundle\Entity\Application $application
+     *
+     * @return Advert
      */
-    public function addApplication(Application $application)
+    public function addApplication(\BC\PlatformBundle\Entity\Application $application)
     {
         $this->applications[] = $application;
         // On lie l'annonce à la candidature
         $application->setAdvert($this);
+        return $this;
     }
 
     /**
-     * @param Application $application
+     * Remove application
+     *
+     * @param \BC\PlatformBundle\Entity\Application $application
      */
-    public function removeApplication(Application $application)
+    public function removeApplication(\BC\PlatformBundle\Entity\Application $application)
     {
         $this->applications->removeElement($application);
     }
 
     /**
+     * Get applications
+     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getApplications()
     {
         return $this->applications;
     }
-}
 
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Advert
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set nbApplications
+     *
+     * @param integer $nbApplications
+     *
+     * @return Advert
+     */
+    public function setNbApplications($nbApplications)
+    {
+        $this->nbApplications = $nbApplications;
+        return $this;
+    }
+
+    /**
+     * Get nbApplications
+     *
+     * @return integer
+     */
+    public function getNbApplications()
+    {
+        return $this->nbApplications;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Advert
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set startdate
+     *
+     * @param \DateTime $startdate
+     *
+     * @return Advert
+     */
+    public function setStartdate($startdate)
+    {
+        $this->startdate = $startdate;
+
+        return $this;
+    }
+
+    /**
+     * Get startdate
+     *
+     * @return \DateTime
+     */
+    public function getStartdate()
+    {
+        return $this->startdate;
+    }
+
+    /**
+     * Set enddate
+     *
+     * @param \DateTime $enddate
+     *
+     * @return Advert
+     */
+    public function setEnddate($enddate)
+    {
+        $this->enddate = $enddate;
+
+        return $this;
+    }
+
+    /**
+     * Get enddate
+     *
+     * @return \DateTime
+     */
+    public function getEnddate()
+    {
+        return $this->enddate;
+    }
+}

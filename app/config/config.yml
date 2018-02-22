@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_3_horizontal_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -67,3 +69,33 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Stof\DoctrineExtensionBundle configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+
+# Ajout du FOSUser 11/02/18
+fos_user:
+    db_driver: orm # Type de bdd à utiliser -> orm Doctrine
+    firewall_name: main # Nom du firewall derrière on use ces utilisateurs
+    user_class: BC\UserBundle\Entity\User # Classe de l'entité User utilisée
+    # Configuration du from_email 11/02/18
+    from_email:
+        address: tonemail@gmail.com # Obligé de rentrer une valeur (not null) 11/02/18
+        sender_name: tonpseudo # Obligé de rentrer une valeur (not null) 11/02/18
+
+# Modif du 16/02/18 pour obtenir la date et l'heure en local
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~

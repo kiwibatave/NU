@@ -1,20 +1,60 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    # modif secu du 11/02/18
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        BC\UserBundle\Entity\USer: sha512 # remplace plaintext qui permet d'encoder le password
+
+    # modif secu du 09/02/18 bis
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_AUTEUR, ROLE_MODERATEUR]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    # modif secu du 11/02/18
     providers:
-        in_memory:
-            memory: ~
+        main:
+            id: fos_user.user_provider.username
+#            entity:
+#                class: BC\UserBundle\Entity\User
+#                property: username
+
+#        in_memory:
+#            memory:
+#                users:
+#                    user: {password: userpass, roles: [ 'ROLE_USER' ] }
+#                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+
+    # modif du 09/02/18
+#    provider: in_memory
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        # modif secu pare-feu 09/02/18
+#        main_login:
+#            pattern: ^/login$
+#            anonymous: true
+        # fin modif secu pare-feu
 
         main:
-            anonymous: ~
+        # modif secu du 09/02/18 bis
+            pattern: ^/
+            anonymous: true
+            provider: main
+        # modif secu du 11/02/18 pour adapter à FOSUser
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path: fos_user_security_logout
+                target: fos_user_security_login
+            # modif du 11/02/18 pour se souvenir de l'utilisateur
+            remember_me:
+                secret: %secret% # %secret est un paramètre de parameter
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -22,3 +62,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+    # modif secu du 09/02/18 bis
+    # impossible de se connecter en user
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }

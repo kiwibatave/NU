@@ -1,0 +1,11 @@
+<html>
+    <body>
+        {# modif du 14/02/18 #}
+        {{ 'Hello'|trans({'%name%': name}) }} !
+        <br>
+        {{ 'Bye'|trans }} {{ name }} !
+        <br>
+        Aujourd'hui nous sommes le {{ 'now'|localizeddate('full', 'none') }}
+        et il est {{ 'now'|localizeddate('none', 'short') }}
+    </body>
+</html>

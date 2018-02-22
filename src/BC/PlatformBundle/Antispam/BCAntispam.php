@@ -16,8 +16,13 @@ class BCAntispam
     public function __construct(\Swift_Mailer $mailer, $locale, $minLenght)
     {
         $this->mailer = $mailer;
-        $this->locale = $locale;
+        // $this->locale = $locale; modif du 11/02/18
         $this->minLenght = $minLenght;
+    }
+    // Modif du 11/02/18
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**

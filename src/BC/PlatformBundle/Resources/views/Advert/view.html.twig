@@ -8,8 +8,12 @@
 
     <div style="float: left; margin-right: 1em;">
         {# Vérification liaison image/advert #}
+        {# Modif du 06/02/18 #}
         {% if advert.image is not null %}
-            <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" height="60">
+            <img src="{{ asset(advert.image.webPath) }}"
+                 alt="{{ advert.image.alt }}"
+                 height="60"
+            />
         {% endif %}
     </div>
 
@@ -40,18 +44,22 @@
         </div>
     {% endif %}
 
-    <p>
-        <a href="{{ path('bc_platform_home') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            Retour à la liste
-        </a>
-        <a href="{{ path('bc_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-edit"></i>
-            Modifier l'annonce
-        </a>
-        <a href="{{ path('bc_platform_delete', {'id': advert.id}) }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-trash"></i>
-            Supprimer l'annonce
-        </a>
-    </p>
+    <div class="container">
+        <div class="offset-s3">
+            <a href="{{ path('bc_platform_home') }}" class="waves-effect waves-light btn-large blue"><i
+                        class="material-icons left">list</i>
+                Retour à la liste
+            </a>
+            <a href="{{ path('bc_platform_edit', {'id': advert.id}) }}"
+               class="waves-effect waves-light btn-large green">
+                <i class="material-icons left">mode_edit</i>
+                Modifier l'annonce
+            </a>
+            <a href="{{ path('bc_platform_delete', {'id': advert.id}) }}"
+               class="waves-effect waves-light btn-large red">
+                <i class="material-icons left">delete</i>
+                Supprimer l'annonce
+            </a>
+        </div>
+    </div>
 {% endblock %}

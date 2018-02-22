@@ -2,6 +2,10 @@
 
 namespace BC\PlatformBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * AdvertRepository
  *
@@ -10,4 +14,92 @@ namespace BC\PlatformBundle\Repository;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
+    // ajout de la méthode getAdverts 31/01/18
+    public function getAdverts($page, $nbPerPage)
+    {
+        // On crée notre query
+        $query = $this->createQueryBuilder('a')
+            ->leftJoin('a.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('a.categories', 'c')
+            ->addSelect('c')
+            ->orderBy('a.date', 'DESC')
+            ->getQuery();
+
+        $query
+            // On choisit l'annonce à partir de laquelle la liste débute
+            ->setFirstResult(($page-1) * $nbPerPage)
+            // Et le nbre d'annonces par page
+            ->setMaxResults($nbPerPage);
+
+        // On retourne l'objet Paginator qui correspond à la requete
+        return new Paginator($query, true);
+    }
+
+    // Test QueryBuilder 29/01/18
+    public function myFindAll()
+    {
+        // Method 1 : via entity manager 29/01/18
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select('a')
+            ->from($this->_entityName, 'a');
+        // Dans un repository, $this->_entityName est le namespace de l'entité gérée
+        // Ici il vaut : BC\PlatformBundle\Entity\Advert
+
+        // Method 2 : avec raccourci
+        $queryBuilder = $this->createQueryBuilder('a');
+        // Pas d'ajout de critères ou tri
+        // On récupère le query depuis le queryBuilder
+        $query = $queryBuilder->getQuery();
+
+        // On récupère les resultats via le query
+        $results = $query->getResult();
+
+        // On retourne le resultat
+        return $results;
+    }
+
+    public function myFind() // 29/01/18
+    {
+        $qb = $this->createQueryBuilder('a');
+        // On peut ajouter ce que l'on souhaite avant
+        $qb
+            ->where('a.author = :author')
+            ->setParameter('author', 'Monique');
+
+        // On applique notre condition sur le QueryBuilder
+        $this->whereCurrentYear($qb);
+
+        // On peut ajouter ce qu'on veut après
+        $qb->orderBy('a.date', 'DESC');
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAdvertWithCategories(array $categoryNames) // 29/01/18
+    {
+        $qb = $this->createQueryBuilder('a');
+        // On créé une jointure avec l'entity Category avec pour alias "c"
+        $qb
+            ->innerJoin('a.categories', 'c')
+            ->addSelect('c');
+        // On filtre les noms des categories avec un "IN"
+        $qb->where($qb->expr()->in('c.name', $categoryNames));
+
+        // Et on retourne le résultat
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+    protected function whereCurrentYear(QueryBuilder $qb)
+    {
+        $qb
+            ->andWhere('a.date BETWEEN :start AND :end')
+            ->setParameter('start', new \Datetime(date('Y') . '-01-01'))
+            ->setParameter('end', new \Datetime(date('Y') . '-12-31'));
+        // On paramètre juste sur les annonces de l'année en cours
+    }
 }

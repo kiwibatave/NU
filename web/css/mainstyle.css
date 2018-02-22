@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #6B6863;
+}
+main {
+    flex: 1 0 auto;
+}
+#formconnexion {
+    background-color: #FF5252;
+  }
+/************************************************** HEADER ************************************************************/
+#navheader {
+    height: 10em;
+    width: 100%;
+    background-color: #fff;
+}
+
+#mainlogo {
+    width: 12em;
+    height: auto;
+}
+
+/**************************************************** FOOTER *********************************************************/
+#mainfooter {
+    background-color: #4e4c49;
+
+}
+
+#secondfooter {
+    background-color: #6B6863;
+}

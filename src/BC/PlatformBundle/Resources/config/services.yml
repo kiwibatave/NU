@@ -5,3 +5,75 @@ services:
             - "@mailer"
             - %locale%
             - 50
+        # modif du 11/02/18
+        calls:
+            - [ setLocale, [%locale%] ]
+
+    bc_platform.email.application_mailer:
+        class: BC\PlatformBundle\Email\ApplicationMailer
+        arguments:
+            - "@mailer"
+
+    bc_platform.doctrine_listener.application_creation:
+        class: BC\PlatformBundle\DoctrineListener\ApplicationCreationListener
+        arguments:
+            - "@bc_platform.email.application_mailer"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+    # Modif du 07/02/18
+    bc_platform.validator.antiflood:
+        class: BC\PlatformBundle\Validator\AntifloodValidator
+        arguments:
+            ["@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator, alias: bc_platform_antiflood }
+
+    # Modif du 11/02/18
+    bc_platform.twig.antispam_extension:
+        class: BC\PlatformBundle\Twig\AntispamExtension
+        arguments:
+            - "@bc_platform.antispam"
+        tags:
+            - { name: twig.extension }
+
+    # Modif du 11/02/18
+    bc_platform.form.ckeditor:
+        class: BC\PlatformBundle\Form\CkeditorType
+        tags:
+            - { name: form.type, alias: ckeditor }
+
+    # Modif du 11/02/18
+    bc_platform.beta.html_adder:
+        class: BC\PlatformBundle\Beta\BetaHTMLAdder
+
+    # Modif du 11/02/18 pour l'ajout du BETA
+    bc_platform.beta.listener:
+        class: BC\PlatformBundle\Beta\BetaListener
+        arguments:
+            - "@bc_platform.beta.html_adder"
+            - "2018-02-23"
+        # Tag à rajouter pour listerner 11/02/18
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: processBeta }
+
+    # Modif du 14/02/18
+    bc_platform.bigbrother.message_notificator:
+        class: BC\PlatformBundle\Bigbrother\MessageNotificator
+        arguments:
+            - "@mailer"
+
+    # Modif du 14/02/18
+    bc_platform.bigbrother.message_listener:
+        class: BC\PlatformBundle\Bigbrother\MessageListener
+        arguments:
+            - "@bc_platform.bigbrother.message_notificator"
+            - ["Lisa", "Benoit", "Nicolas"]
+        tags:
+            - { name: kernel.event_listener, event: bc_platform.post_message, method: processMessage }
+
+    # Modif du 16/02/18 param
+    bc_platform.paramconverter.json:
+        class: BC\PlatformBundle\ParamConverter\JsonParamConverter
+        tags:
+            - { name: request.param_converter }

@@ -1,0 +1,21 @@
+{# modif secu du 09/02/18 #}
+{% extends "BCCoreBundle::layout.html.twig" %}
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+    {% block connexion %}
+    {% endblock connexion %}
+    <div class="row center-align">
+        <div class="col s6 offset-s3" id="formconnexion">
+            <form action="{{ path('fos_user_security_check') }}" method="post">
+                <label for="username" class="col s6">Login :</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+                <label for="password" class="col s6">Password :</label>
+                <input type="password" id="password" name="_password"/>
+                <br/>
+                <input class="waves-effect waves-light btn" type="submit" value="Connexion"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -32,3 +32,4 @@ bc_platform_delete:
     requirements:
         id: \d+
 
+

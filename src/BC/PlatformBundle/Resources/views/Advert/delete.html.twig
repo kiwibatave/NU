@@ -1,0 +1,28 @@
+{# Modif du 06/02/18 #}
+
+{% extends "BCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Supprimer une annonce - {{ parent() }}
+{% endblock %}
+
+{% block bcplatform_body %}
+
+    <h2>Supprimer une annonce</h2>
+
+    <p>
+        Voulez-vous vraiment supprimer l'annonce "{{ advert.title }}" ?
+    </p>
+
+{# On place l'id de l'advert dans la route d'action du form #}
+    <form action="{{ path('bc_platform_delete', {'id': advert.id}) }}" method="post">
+        <a href="{{ path('bc_platform_view', {'id': advert.id}) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+        <input type="submit" value="Supprimer" class="btn btn-danger"/>
+        {# Génération du champ CSRF via la ligne suivante #}
+        {{ form_rest(form) }}
+    </form>
+
+{% endblock %}
