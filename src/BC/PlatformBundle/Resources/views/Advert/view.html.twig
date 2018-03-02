@@ -5,47 +5,41 @@
 {% endblock %}
 
 {% block bcplatform_body %}
+    <div class="row center-align" id="viewadvert">
+        <div class="s3 offset-s3">
+            {# Vérification liaison image/advert #}
+            {# Modif du 06/02/18 #}
+            {% if advert.image is not null %}
+                <img id="photoview" src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}"/>
+            {% endif %}
 
-    <div style="float: left; margin-right: 1em;">
-        {# Vérification liaison image/advert #}
-        {# Modif du 06/02/18 #}
-        {% if advert.image is not null %}
-            <img src="{{ asset(advert.image.webPath) }}"
-                 alt="{{ advert.image.alt }}"
-                 height="60"
-            />
-        {% endif %}
-    </div>
+            <h5>{{ advert.title }}</h5>
+            <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
 
-    <h2>{{ advert.title }}</h2>
-    <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
-
-    <div class="well">
-        {{ advert.content }}
-    </div>
-    {# Ajout des catégories 17/01/18 #}
-    {% if not advert.categories.empty %}
-        <p>
-            Cette annonce est parue dans les catégories suivantes :
-            {% for category in advert.categories %}
-                {{ category.name }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-    {% endif %}
-
-    {% if listAdvertSkills|length > 0 %}
-        <div>
-            Cette annonce possède les caractèristiques suivantes :
-            <ul>
-                {% for advertSkill in listAdvertSkills %}
-                    <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
-                {% endfor %}
-            </ul>
+            <div class="well">
+                {{ advert.content }}
+            </div>
+            <div class="row">
+                <div class="offset-s3">
+                    <p>La tente est disponible à la location dans le ville de : <span class="blue-text">{{ advert.city }}</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-m3">
+                    <p>La tente est disponible à la location du
+                        <span class="green-text darken-1">{{ advert.startdate|date('d-m-Y') }}</span>
+                        au
+                        <span class="red-text accent-4">{{ advert.enddate|date('d-m-Y') }}</span>
+                    </p>
+                </div>
+            </div>
+            <div id="mapid"></div>
         </div>
-    {% endif %}
-
-    <div class="container">
-        <div class="offset-s3">
+    </div>
+    {# test map #}
+    {# fin test map #}
+    <div class="row center-align">
+        <div class="offset-s3" id="buttonsaction">
             <a href="{{ path('bc_platform_home') }}" class="waves-effect waves-light btn-large blue"><i
                         class="material-icons left">list</i>
                 Retour à la liste

@@ -8,7 +8,7 @@ main {
     flex: 1 0 auto;
 }
 #formconnexion {
-    background-color: #FF5252;
+    background-color: #fff;
   }
 /************************************************** HEADER ************************************************************/
 #navheader {
@@ -30,4 +30,33 @@ main {
 
 #secondfooter {
     background-color: #6B6863;
+}
+
+/***************************************************** BODY ***********************************************************/
+
+#sidemenu {
+    background-color: pink;
+}
+
+#photoview {
+    width: 450px;
+    height: auto;
+}
+
+#viewadvert {
+    background-color: #fff;
+}
+
+#buttonsaction {
+    background: #fff;
+}
+#lastsadverts {
+    background-color: #FF5252;
+}
+/*************************************************** MAP **************************************************************/
+
+#mapid {
+    height: 250px;
+    width: 450px;
+    margin: auto;
 }

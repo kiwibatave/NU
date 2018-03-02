@@ -124,6 +124,11 @@ class Advert
      */
     private $enddate;
 
+    /**
+     * @var string
+     * @ORM\Column(name="city", type="text")
+     */
+    private $city;
 
     public function __construct()
     {
@@ -499,5 +504,34 @@ class Advert
     public function getEnddate()
     {
         return $this->enddate;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getStartdate($this->startdate);
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Advert
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

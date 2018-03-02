@@ -7,11 +7,11 @@
     {% block connexion %}
     {% endblock connexion %}
     <div class="row center-align">
-        <div class="col s6 offset-s3" id="formconnexion">
+        <div class="col m2 offset-m5" id="formconnexion">
             <form action="{{ path('fos_user_security_check') }}" method="post">
-                <label for="username" class="col s6">Login :</label>
+                <label for="username" class="col s6 offset-s3 center-align"><span class="black-text">LOGIN</span></label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}"/>
-                <label for="password" class="col s6">Password :</label>
+                <label for="password" class="col s6 offset-s3 center-align"><span class="black-text">PASSWORD</span></label>
                 <input type="password" id="password" name="_password"/>
                 <br/>
                 <input class="waves-effect waves-light btn" type="submit" value="Connexion"/>

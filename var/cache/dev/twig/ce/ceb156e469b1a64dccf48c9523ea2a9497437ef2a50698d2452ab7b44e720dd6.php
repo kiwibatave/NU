@@ -22,29 +22,29 @@ class __TwigTemplate_936d09c9e4ab582fb7554b8947ec08f1eecfd9013bd804657de7de578ce
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_dbb2c19ca823bf674cfeb3f2878a8615443d3c79312be9c8909a85e2a943c475 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_dbb2c19ca823bf674cfeb3f2878a8615443d3c79312be9c8909a85e2a943c475->enter($__internal_dbb2c19ca823bf674cfeb3f2878a8615443d3c79312be9c8909a85e2a943c475_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:edit.html.twig"));
+        $__internal_08c24f5353bdc8a68ae4b5ce7382410daf9d5517fc03f52de96bb3dc75d8a962 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_08c24f5353bdc8a68ae4b5ce7382410daf9d5517fc03f52de96bb3dc75d8a962->enter($__internal_08c24f5353bdc8a68ae4b5ce7382410daf9d5517fc03f52de96bb3dc75d8a962_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:edit.html.twig"));
 
-        $__internal_f768680a39a5ed2b2a38b393d2ba775a771ff08f27d46f59fc868c72b7807b32 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_f768680a39a5ed2b2a38b393d2ba775a771ff08f27d46f59fc868c72b7807b32->enter($__internal_f768680a39a5ed2b2a38b393d2ba775a771ff08f27d46f59fc868c72b7807b32_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:edit.html.twig"));
+        $__internal_2e0127b653b7df6d9707882e0005ac879782651516729f1623601a7c203bcaa9 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_2e0127b653b7df6d9707882e0005ac879782651516729f1623601a7c203bcaa9->enter($__internal_2e0127b653b7df6d9707882e0005ac879782651516729f1623601a7c203bcaa9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:edit.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_dbb2c19ca823bf674cfeb3f2878a8615443d3c79312be9c8909a85e2a943c475->leave($__internal_dbb2c19ca823bf674cfeb3f2878a8615443d3c79312be9c8909a85e2a943c475_prof);
+        $__internal_08c24f5353bdc8a68ae4b5ce7382410daf9d5517fc03f52de96bb3dc75d8a962->leave($__internal_08c24f5353bdc8a68ae4b5ce7382410daf9d5517fc03f52de96bb3dc75d8a962_prof);
 
         
-        $__internal_f768680a39a5ed2b2a38b393d2ba775a771ff08f27d46f59fc868c72b7807b32->leave($__internal_f768680a39a5ed2b2a38b393d2ba775a771ff08f27d46f59fc868c72b7807b32_prof);
+        $__internal_2e0127b653b7df6d9707882e0005ac879782651516729f1623601a7c203bcaa9->leave($__internal_2e0127b653b7df6d9707882e0005ac879782651516729f1623601a7c203bcaa9_prof);
 
     }
 
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        $__internal_e4d5b2f19ee234b67f0b866e907ff5c7f788f44eed1e982c2b494c0d31a24c69 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_e4d5b2f19ee234b67f0b866e907ff5c7f788f44eed1e982c2b494c0d31a24c69->enter($__internal_e4d5b2f19ee234b67f0b866e907ff5c7f788f44eed1e982c2b494c0d31a24c69_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_a2b4b05fdd37b018753fce30fefdf9be495102a596ba3caf3469572c16086ee5 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_a2b4b05fdd37b018753fce30fefdf9be495102a596ba3caf3469572c16086ee5->enter($__internal_a2b4b05fdd37b018753fce30fefdf9be495102a596ba3caf3469572c16086ee5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
-        $__internal_617a1a8d6b68fafa1d9419aac3a2bde834d41e2f9f5f957c40f1eb5a7ec9649c = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_617a1a8d6b68fafa1d9419aac3a2bde834d41e2f9f5f957c40f1eb5a7ec9649c->enter($__internal_617a1a8d6b68fafa1d9419aac3a2bde834d41e2f9f5f957c40f1eb5a7ec9649c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_2bdd3eb9c57f5964ea96424e330a86f86cb27b3b889e8f576af4298523efe570 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_2bdd3eb9c57f5964ea96424e330a86f86cb27b3b889e8f576af4298523efe570->enter($__internal_2bdd3eb9c57f5964ea96424e330a86f86cb27b3b889e8f576af4298523efe570_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         // line 4
         echo "    Modifier une annonce - ";
@@ -52,21 +52,21 @@ class __TwigTemplate_936d09c9e4ab582fb7554b8947ec08f1eecfd9013bd804657de7de578ce
         echo "
 ";
         
-        $__internal_617a1a8d6b68fafa1d9419aac3a2bde834d41e2f9f5f957c40f1eb5a7ec9649c->leave($__internal_617a1a8d6b68fafa1d9419aac3a2bde834d41e2f9f5f957c40f1eb5a7ec9649c_prof);
+        $__internal_2bdd3eb9c57f5964ea96424e330a86f86cb27b3b889e8f576af4298523efe570->leave($__internal_2bdd3eb9c57f5964ea96424e330a86f86cb27b3b889e8f576af4298523efe570_prof);
 
         
-        $__internal_e4d5b2f19ee234b67f0b866e907ff5c7f788f44eed1e982c2b494c0d31a24c69->leave($__internal_e4d5b2f19ee234b67f0b866e907ff5c7f788f44eed1e982c2b494c0d31a24c69_prof);
+        $__internal_a2b4b05fdd37b018753fce30fefdf9be495102a596ba3caf3469572c16086ee5->leave($__internal_a2b4b05fdd37b018753fce30fefdf9be495102a596ba3caf3469572c16086ee5_prof);
 
     }
 
     // line 7
     public function block_bcplatform_body($context, array $blocks = array())
     {
-        $__internal_35eb648f175618bfc7a7d218cecb490025f3852cb8e6ddb2e28292d114d3a23c = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_35eb648f175618bfc7a7d218cecb490025f3852cb8e6ddb2e28292d114d3a23c->enter($__internal_35eb648f175618bfc7a7d218cecb490025f3852cb8e6ddb2e28292d114d3a23c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "bcplatform_body"));
+        $__internal_2a67a96e0aeca4564b37020f21da43aaafe9112eff6d86b84a86a91f286016d2 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_2a67a96e0aeca4564b37020f21da43aaafe9112eff6d86b84a86a91f286016d2->enter($__internal_2a67a96e0aeca4564b37020f21da43aaafe9112eff6d86b84a86a91f286016d2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "bcplatform_body"));
 
-        $__internal_db0cb2e4d8c8e6a7bd2bd52997c69bee9c47668dc06259de7389d4f0a2f57d41 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_db0cb2e4d8c8e6a7bd2bd52997c69bee9c47668dc06259de7389d4f0a2f57d41->enter($__internal_db0cb2e4d8c8e6a7bd2bd52997c69bee9c47668dc06259de7389d4f0a2f57d41_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "bcplatform_body"));
+        $__internal_8d26424e5781fc6c7142ce1981380e9eae569048d93e5d36247c26d799328044 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_8d26424e5781fc6c7142ce1981380e9eae569048d93e5d36247c26d799328044->enter($__internal_8d26424e5781fc6c7142ce1981380e9eae569048d93e5d36247c26d799328044_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "bcplatform_body"));
 
         // line 8
         echo "    <h2>Modifier une annonce</h2>
@@ -76,23 +76,22 @@ class __TwigTemplate_936d09c9e4ab582fb7554b8947ec08f1eecfd9013bd804657de7de578ce
         echo twig_include($this->env, $context, "BCPlatformBundle:Advert:form.html.twig");
         echo "
 
-    <p>Vous allez pouvoir maintenant modifier votre annonce</p>
-
-    <p>
+    <div class=\"row center-align\">
+        <p>Vous allez pouvoir maintenant modifier votre annonce</p>
         <a href=\"";
-        // line 15
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("bc_platform_view", array("id" => twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["advert"]) || array_key_exists("advert", $context) ? $context["advert"] : (function () { throw new Twig_Error_Runtime('Variable "advert" does not exist.', 15, $this->getSourceContext()); })()), "id", array()))), "html", null, true);
+        // line 14
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("bc_platform_view", array("id" => twig_get_attribute($this->env, $this->getSourceContext(), (isset($context["advert"]) || array_key_exists("advert", $context) ? $context["advert"] : (function () { throw new Twig_Error_Runtime('Variable "advert" does not exist.', 14, $this->getSourceContext()); })()), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-default\">
             <i class=\"glyphicon glyphicon-chevron-left\"></i>
             Retour à l'annonce
         </a>
-    </p>
+    </div>
 ";
         
-        $__internal_db0cb2e4d8c8e6a7bd2bd52997c69bee9c47668dc06259de7389d4f0a2f57d41->leave($__internal_db0cb2e4d8c8e6a7bd2bd52997c69bee9c47668dc06259de7389d4f0a2f57d41_prof);
+        $__internal_8d26424e5781fc6c7142ce1981380e9eae569048d93e5d36247c26d799328044->leave($__internal_8d26424e5781fc6c7142ce1981380e9eae569048d93e5d36247c26d799328044_prof);
 
         
-        $__internal_35eb648f175618bfc7a7d218cecb490025f3852cb8e6ddb2e28292d114d3a23c->leave($__internal_35eb648f175618bfc7a7d218cecb490025f3852cb8e6ddb2e28292d114d3a23c_prof);
+        $__internal_2a67a96e0aeca4564b37020f21da43aaafe9112eff6d86b84a86a91f286016d2->leave($__internal_2a67a96e0aeca4564b37020f21da43aaafe9112eff6d86b84a86a91f286016d2_prof);
 
     }
 
@@ -108,7 +107,7 @@ class __TwigTemplate_936d09c9e4ab582fb7554b8947ec08f1eecfd9013bd804657de7de578ce
 
     public function getDebugInfo()
     {
-        return array (  84 => 15,  76 => 10,  72 => 8,  63 => 7,  50 => 4,  41 => 3,  11 => 1,);
+        return array (  83 => 14,  76 => 10,  72 => 8,  63 => 7,  50 => 4,  41 => 3,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -124,14 +123,13 @@ class __TwigTemplate_936d09c9e4ab582fb7554b8947ec08f1eecfd9013bd804657de7de578ce
 
     {{ include(\"BCPlatformBundle:Advert:form.html.twig\") }}
 
-    <p>Vous allez pouvoir maintenant modifier votre annonce</p>
-
-    <p>
+    <div class=\"row center-align\">
+        <p>Vous allez pouvoir maintenant modifier votre annonce</p>
         <a href=\"{{ path('bc_platform_view', {'id': advert.id}) }}\" class=\"btn btn-default\">
             <i class=\"glyphicon glyphicon-chevron-left\"></i>
             Retour à l'annonce
         </a>
-    </p>
+    </div>
 {% endblock %}", "BCPlatformBundle:Advert:edit.html.twig", "/var/www/html/NU/src/BC/PlatformBundle/Resources/views/Advert/edit.html.twig");
     }
 }

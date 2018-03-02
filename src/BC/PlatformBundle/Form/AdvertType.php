@@ -6,8 +6,8 @@ use BC\PlatformBundle\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-//use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,30 +30,49 @@ class AdvertType extends AbstractType
 
         $builder
             ->add('date', DateTimeType::class, array(
-                'label' => 'Date du jour'
+//                'label' => false
             ))
-            ->add('title', TextType::class)
-            ->add('author', TextType::class)
-            ->add('content', TextareaType::class)
+            ->add('title', TextType::class, array(
+                'label' => 'Titre de votre annonce'
+            ))
+            ->add('author', TextType::class, array(
+                'label' => 'Auteur de l\'annonce'
+            ))
+            ->add('content', TextareaType::class, array(
+                'label' => 'Présentation de votre annonce'
+            ))
             // On supprime le pusblished qui sert fait par le listener event 05/02/18
 //            ->add('published', CheckboxType::class)
-            ->add('image', ImageType::class)// Ajout de la classe image après la création du Imagetype 02/02/18
+            ->add('image', ImageType::class, array(
+                'label' => 'Choisissez une photo pour illustrer votre annonce'
+            ))
+            // Ajout de la classe image après la création du Imagetype 02/02/18
             // On ajoute les catégories avec plusieurs argus : nom, type et un tableau
             // Modif du 05/02/18
-            ->add('categories', EntityType::class, array(
-                'class' => 'BCPlatformBundle:Category',
-                'choice_label' => 'name',
-                'multiple' => true,
-                // modif pattern 05/02/18
-                'query_builder' => function (CategoryRepository $repository) use ($pattern) {
-                    return $repository->getLikeQueryBuilder($pattern);
-                }))
+//            ->add('categories', EntityType::class, array(
+//                'class' => 'BCPlatformBundle:Category',
+//                'choice_label' => 'name',
+//                'multiple' => true,
+//                // modif pattern 05/02/18
+//                'query_builder' => function (CategoryRepository $repository) use ($pattern) {
+//                    return $repository->getLikeQueryBuilder($pattern);
+//                }))
             // modif datepicker 21/02/18
             ->add('startdate', DateTimeType::class, array(
-                'label' => false
+                'widget' => 'single_text',
+                'label' => false,
+                'html5' => false,
+                'format' => 'dd-MM-yyyy'
             ))
             ->add('enddate', DateTimeType::class, array(
-                'label' => false
+                'label' => false,
+                'html5' => false,
+                'format' => 'dd-MM-yyyy',
+                'widget' => 'single_text'
+            ))
+            //ajout de la ville
+            -> add('city', TextType::class,array(
+                'label' => 'Ville',
             ))
             // fin modif datepicker
             ->add('save', SubmitType::class);

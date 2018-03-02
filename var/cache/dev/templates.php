@@ -87,6 +87,7 @@
   'BCPlatformBundle:Advert:index.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/index.html.twig',
   'BCPlatformBundle:Advert:add.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/add.html.twig',
   'BCPlatformBundle:Advert:translation.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/translation.html.twig',
+  'BCPlatformBundle:Advert:materialize_layout.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/materialize_layout.html.twig',
   'BCPlatformBundle:Advert:delete.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/delete.html.twig',
   'BCPlatformBundle:Advert:view.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/view.html.twig',
   'BCPlatformBundle:Advert:menu.html.twig' => __DIR__.'/../../../src/BC/PlatformBundle/Resources/views/Advert/menu.html.twig',

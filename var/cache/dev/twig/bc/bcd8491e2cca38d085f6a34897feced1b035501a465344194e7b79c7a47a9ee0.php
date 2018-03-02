@@ -15,11 +15,11 @@ class __TwigTemplate_7596694ac03211b30c8506659082966f5bcc0bb034722cf23d854600d75
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d3016dac8e6fcbcc1708fef0854bf3f6bc808751f0774bffc4aaa175e2710b39 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_d3016dac8e6fcbcc1708fef0854bf3f6bc808751f0774bffc4aaa175e2710b39->enter($__internal_d3016dac8e6fcbcc1708fef0854bf3f6bc808751f0774bffc4aaa175e2710b39_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:menu.html.twig"));
+        $__internal_9ec9efb1ced03fb533f261a3b49dcf9760d81fae480d558b8132db66789e95ab = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_9ec9efb1ced03fb533f261a3b49dcf9760d81fae480d558b8132db66789e95ab->enter($__internal_9ec9efb1ced03fb533f261a3b49dcf9760d81fae480d558b8132db66789e95ab_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:menu.html.twig"));
 
-        $__internal_30e55c6948bf6d5070699695425d128bbe7174690c5933114872e1318a3e17b4 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_30e55c6948bf6d5070699695425d128bbe7174690c5933114872e1318a3e17b4->enter($__internal_30e55c6948bf6d5070699695425d128bbe7174690c5933114872e1318a3e17b4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:menu.html.twig"));
+        $__internal_795647f738b50896753b3aad12767a7643225d9278061883a797e026c0b85d06 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_795647f738b50896753b3aad12767a7643225d9278061883a797e026c0b85d06->enter($__internal_795647f738b50896753b3aad12767a7643225d9278061883a797e026c0b85d06_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:menu.html.twig"));
 
         // line 2
         echo "
@@ -30,49 +30,15 @@ class __TwigTemplate_7596694ac03211b30c8506659082966f5bcc0bb034722cf23d854600d75
         $context['_seq'] = twig_ensure_traversable((isset($context["listAdverts"]) || array_key_exists("listAdverts", $context) ? $context["listAdverts"] : (function () { throw new Twig_Error_Runtime('Variable "listAdverts" does not exist.', 4, $this->getSourceContext()); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["advert"]) {
             // line 5
-            echo "        <ul class=\"collection\">
-            <li class=\"collection-item avatar\">
-                <img src=\"/var/www/html/NU/images/wally.jpg\" alt=\"\" class=\"circle\">
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle\">folder</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle green\">insert_chart</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle red\">play_arrow</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-        </ul>
-        <li>
+            echo "        <li>
             <a href=\"";
-            // line 40
+            // line 6
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("bc_platform_view", array("id" => twig_get_attribute($this->env, $this->getSourceContext(), $context["advert"], "id", array()))), "html", null, true);
             echo "\">
-                ";
-            // line 41
+                <span class=\"black-text\">";
+            // line 7
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["advert"], "title", array()), "html", null, true);
-            echo "
+            echo "</span>
             </a>
         </li>
     ";
@@ -80,13 +46,13 @@ class __TwigTemplate_7596694ac03211b30c8506659082966f5bcc0bb034722cf23d854600d75
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['advert'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 45
+        // line 11
         echo "</ul>";
         
-        $__internal_d3016dac8e6fcbcc1708fef0854bf3f6bc808751f0774bffc4aaa175e2710b39->leave($__internal_d3016dac8e6fcbcc1708fef0854bf3f6bc808751f0774bffc4aaa175e2710b39_prof);
+        $__internal_9ec9efb1ced03fb533f261a3b49dcf9760d81fae480d558b8132db66789e95ab->leave($__internal_9ec9efb1ced03fb533f261a3b49dcf9760d81fae480d558b8132db66789e95ab_prof);
 
         
-        $__internal_30e55c6948bf6d5070699695425d128bbe7174690c5933114872e1318a3e17b4->leave($__internal_30e55c6948bf6d5070699695425d128bbe7174690c5933114872e1318a3e17b4_prof);
+        $__internal_795647f738b50896753b3aad12767a7643225d9278061883a797e026c0b85d06->leave($__internal_795647f738b50896753b3aad12767a7643225d9278061883a797e026c0b85d06_prof);
 
     }
 
@@ -102,7 +68,7 @@ class __TwigTemplate_7596694ac03211b30c8506659082966f5bcc0bb034722cf23d854600d75
 
     public function getDebugInfo()
     {
-        return array (  84 => 45,  74 => 41,  70 => 40,  33 => 5,  29 => 4,  25 => 2,);
+        return array (  50 => 11,  40 => 7,  36 => 6,  33 => 5,  29 => 4,  25 => 2,);
     }
 
     public function getSourceContext()
@@ -111,43 +77,9 @@ class __TwigTemplate_7596694ac03211b30c8506659082966f5bcc0bb034722cf23d854600d75
 
 <ul class=\"nav nav-pills nav-stacked\">
     {% for advert in listAdverts %}
-        <ul class=\"collection\">
-            <li class=\"collection-item avatar\">
-                <img src=\"/var/www/html/NU/images/wally.jpg\" alt=\"\" class=\"circle\">
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle\">folder</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle green\">insert_chart</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-            <li class=\"collection-item avatar\">
-                <i class=\"material-icons circle red\">play_arrow</i>
-                <span class=\"title\">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a>
-            </li>
-        </ul>
         <li>
             <a href=\"{{ path('bc_platform_view', {'id': advert.id}) }}\">
-                {{ advert.title }}
+                <span class=\"black-text\">{{ advert.title }}</span>
             </a>
         </li>
     {% endfor %}

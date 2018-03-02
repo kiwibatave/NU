@@ -9,12 +9,11 @@
 
     {{ include("BCPlatformBundle:Advert:form.html.twig") }}
 
-    <p>Vous allez pouvoir maintenant modifier votre annonce</p>
-
-    <p>
+    <div class="row center-align">
+        <p>Vous allez pouvoir maintenant modifier votre annonce</p>
         <a href="{{ path('bc_platform_view', {'id': advert.id}) }}" class="btn btn-default">
             <i class="glyphicon glyphicon-chevron-left"></i>
             Retour à l'annonce
         </a>
-    </p>
+    </div>
 {% endblock %}

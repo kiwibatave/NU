@@ -58,29 +58,6 @@ class AdvertController extends Controller
         if ($page > $nbPages) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
-    // Création de la liste d'annonces en dur pour tester 08/01/18
-//        $listAdverts = array(
-//            array(
-//                'title'    => 'Tente DUÖ sur Rennes',
-//                'id'       => 1,
-//                'author'   => 'Denise',
-//                'content'  => 'Mon mari et moi même mettons en location...blablabla',
-//                'date'     => new \DateTime()),
-//
-//            array(
-//                'title'    => 'Tente QUATRÖ sur Nice',
-//                'id'       => 2,
-//                'author'   => 'Jean Dennis',
-//                'content'  => 'Je loue ma tente de toit...blablabla',
-//                'date'     => new \DateTime()),
-//
-//            array(
-//                'title'    => 'Tente TRIÖ sur Bordeaux',
-//                'id'       => 3,
-//                'author'   => 'Robert',
-//                'content'  => 'Nous souhaitons mettre à disposition notre...blablabla',
-//                'date'     => new \DateTime()),
-//        );
     // On récupéra les annonces ici, mais pour le moment on appele uniquement le template
         return $this->render('BCPlatformBundle:Advert:index.html.twig', array(
             'listAdverts' => $listAdverts,
@@ -130,16 +107,6 @@ class AdvertController extends Controller
 
         // Modif 02/02/18
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
-            // modif du 14/02/18
-//            $event = new MessagePostEvent($advert->getContent()
-//            );
-//            // On déclenche l'event
-//            $this->get('event_dispatcher')->dispatch(PlatformEvents::POST_MESSAGE, $event);
-//            // On récupère la modifcation via le(s) listener(s)
-//            $advert->setContent($event->getMessage());
-            // Fin de la modif 14/02/18
-
                 // On enregistre dans la bdd 02/02/18
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($advert);
@@ -155,74 +122,6 @@ class AdvertController extends Controller
         return $this->render('BCPlatformBundle:Advert:add.html.twig', array(
             'form' => $form->createView(),
         ));
-
-
-
-
-
-        // Création entité Advert
-//        $advert = new Advert();
-//        $advert->setTitle('Tente DUÖ en location à Paris.');
-//        $advert->setAuthor('Pierre');
-//        $advert->setContent("Je loue ma tente blablablabla...");
-//
-//        //Création entité Image
-//        $image = new Image();
-//        $image->setUrl('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Tatev_Monastery_from_a_distance.jpg/400px-Tatev_Monastery_from_a_distance.jpg');
-//        $image->setAlt('Monastère');
-//        // Liaison image -> advert
-//        $advert->setImage($image);
-//
-//        // Création première candidature 17/01/17
-//        $application1 = new Application();
-//        $application1->setAuthor('José');
-//        $application1->setContent("Je suis très intéressé....bla bla bla");
-//
-//    // Création seconde candidature 17/01/17
-//        $application2 = new Application();
-//        $application2->setAuthor('Monique');
-//        $application2->setContent("Je voudrais louer....bla bla bla");
-//
-//    // On lie les candidatures à l'annonce 17/01/18
-//        $application1->setAdvert($advert);
-//        $application2->setAdvert($advert);
-//
-//    // On récupère les compétences possibles 17/01/18
-//        $listSkills = $em->getRepository('BCPlatformBundle:Skill')->findAll();
-//
-//    // Pour chaque compétence 17/01/18
-//        foreach ($listSkills as $skill) {
-//            //On crée une nouvelle relation entre 1 annonce et 1 compétence 17/01/18
-//            $advertSkill = new AdvertSkill();
-//            //On lie à l'annonce (qui est toujours la même) 17/01/18
-//            $advertSkill->setAdvert($advert);
-//            //On lie la compétence (qui change dans la boucle foreach) 17/01/18
-//            $advertSkill->setSkill($skill);
-//            //On fixe le niveau au arbitrairement
-//            $advertSkill->setLevel('Expert');
-//            //On periste pour valider l'enregistrement
-//            $em->persist($advertSkill);
-//        }
-//        // Step 1 : persist entity
-//        $em->persist($advert);
-//        // Step 1 bis : persist à la main si cascade={"persit"} absent
-//        // $em->persist($image); 17/01/18
-//        // Step 1 ter : pour la relation application-advert pas de cascade donc on doit persister à la main 17/01/18
-//        $em->persist($application1);
-//        $em->persist($application2);
-//        // Step 2 : flush du "persist"
-//        $em->flush();
-
-//        // Si requête POST, formulaire soumis 31/01/18
-//        if ($request->isMethod('POST')) {
-//        // Création et gestion du formulaire
-//            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-//        // Redirigé vers la page de visualisation de l'annonce
-//            return $this->redirectToRoute('bc_platform_view', array
-//            ('id' => $advert->getId()));
-//        }
-//    // Si non requête POST, affichage formulaire
-//        return $this->render('BCPlatformBundle:Advert:add.html.twig'); // modif 31/01/18
     }
 
     public function editAction(Advert $advert, Request $request)
@@ -308,19 +207,11 @@ class AdvertController extends Controller
             0 // En partant du premier
         );
 
-    // Liste en dur pour test 04/01/18
-//    $listAdverts = array(
-//        array('id' => 2, 'title' => 'Tente Duo à Limoges'),
-//        array('id' => 5, 'title' => 'Tente Trio à Toulouse'),
-//        array('id' => 9, 'title' => 'Tente Quatro à Dunkerque')
-//    );
-
     return $this->render('BCPlatformBundle:Advert:menu.html.twig', array(
     // Passage des variables ici nécessaires pour au template (via le controller)
      'listAdverts' => $listAdverts
     ));
     }
-
     // Modif du 14/02/18
     // Test traduction
     public function translationAction($name)
@@ -329,7 +220,6 @@ class AdvertController extends Controller
             'name' => $name
         ));
     }
-
     // Modif du 16/02/18 paramconverter
 
     /**

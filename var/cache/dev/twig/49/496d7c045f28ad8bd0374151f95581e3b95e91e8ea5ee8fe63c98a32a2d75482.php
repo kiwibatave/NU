@@ -21,49 +21,49 @@ class __TwigTemplate_3b8a787f8f9728348e61a39522a68fa33d1b93308c3e60af506b6c57a3c
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_7d867d9fd1caf2f0dbb6ad09345aa25c8e6effabdaa66c06f54a76053d203a12 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_7d867d9fd1caf2f0dbb6ad09345aa25c8e6effabdaa66c06f54a76053d203a12->enter($__internal_7d867d9fd1caf2f0dbb6ad09345aa25c8e6effabdaa66c06f54a76053d203a12_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:add.html.twig"));
+        $__internal_06c20fd586cb399c64f82691f1a83dcbc3472d406a271b148cbc81965675fdbc = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_06c20fd586cb399c64f82691f1a83dcbc3472d406a271b148cbc81965675fdbc->enter($__internal_06c20fd586cb399c64f82691f1a83dcbc3472d406a271b148cbc81965675fdbc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:add.html.twig"));
 
-        $__internal_0f8ad3bfb79220a0c536fbf6090125797cfb9d756206512a2e940ace1eda8341 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_0f8ad3bfb79220a0c536fbf6090125797cfb9d756206512a2e940ace1eda8341->enter($__internal_0f8ad3bfb79220a0c536fbf6090125797cfb9d756206512a2e940ace1eda8341_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:add.html.twig"));
+        $__internal_debac14043d259672ef9fcff8004820b935c12748117a752d8b778d45b63b204 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_debac14043d259672ef9fcff8004820b935c12748117a752d8b778d45b63b204->enter($__internal_debac14043d259672ef9fcff8004820b935c12748117a752d8b778d45b63b204_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "BCPlatformBundle:Advert:add.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_7d867d9fd1caf2f0dbb6ad09345aa25c8e6effabdaa66c06f54a76053d203a12->leave($__internal_7d867d9fd1caf2f0dbb6ad09345aa25c8e6effabdaa66c06f54a76053d203a12_prof);
+        $__internal_06c20fd586cb399c64f82691f1a83dcbc3472d406a271b148cbc81965675fdbc->leave($__internal_06c20fd586cb399c64f82691f1a83dcbc3472d406a271b148cbc81965675fdbc_prof);
 
         
-        $__internal_0f8ad3bfb79220a0c536fbf6090125797cfb9d756206512a2e940ace1eda8341->leave($__internal_0f8ad3bfb79220a0c536fbf6090125797cfb9d756206512a2e940ace1eda8341_prof);
+        $__internal_debac14043d259672ef9fcff8004820b935c12748117a752d8b778d45b63b204->leave($__internal_debac14043d259672ef9fcff8004820b935c12748117a752d8b778d45b63b204_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_a29302610b8a7c878da7d197ae054f4eb232c5271014d925860c3b4ae9e2fad3 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_a29302610b8a7c878da7d197ae054f4eb232c5271014d925860c3b4ae9e2fad3->enter($__internal_a29302610b8a7c878da7d197ae054f4eb232c5271014d925860c3b4ae9e2fad3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_f1e225c1664528164d76438d42e56c2eb5cd20ccb13890e4492883c8a9ca6e11 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_f1e225c1664528164d76438d42e56c2eb5cd20ccb13890e4492883c8a9ca6e11->enter($__internal_f1e225c1664528164d76438d42e56c2eb5cd20ccb13890e4492883c8a9ca6e11_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_3a03d415fe5441468db7b17c4948ce67c3f8e58985875ae0b8870d1013893ef2 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_3a03d415fe5441468db7b17c4948ce67c3f8e58985875ae0b8870d1013893ef2->enter($__internal_3a03d415fe5441468db7b17c4948ce67c3f8e58985875ae0b8870d1013893ef2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_306b911c46b735433d7331b05d2346493865dc05721c5a36cbd323286b05cfce = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_306b911c46b735433d7331b05d2346493865dc05721c5a36cbd323286b05cfce->enter($__internal_306b911c46b735433d7331b05d2346493865dc05721c5a36cbd323286b05cfce_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    ";
         echo twig_include($this->env, $context, "BCPlatformBundle:Advert:form.html.twig");
         echo "
     <div class=\"row center-align\">
-        <div class=\"offset-s3\">
+        <div class=\"col m4 offset-m4\">
             <p>
-                <i class=\"material-icons left\">warning</i>
-                Votre annonce sera ajoutée automatiquement après la validation du formulaire
-                <i class=\"material-icons right\">warning</i>
+                <span class=\"red-text\"><i class=\"material-icons left\">warning</i></span>
+                Votre annonce sera ajoutée automatiquement après validation
+                <span class=\"red-text\"><i class=\"material-icons right\">warning</i></span>
             </p>
         </div>
     </div>
 ";
         
-        $__internal_3a03d415fe5441468db7b17c4948ce67c3f8e58985875ae0b8870d1013893ef2->leave($__internal_3a03d415fe5441468db7b17c4948ce67c3f8e58985875ae0b8870d1013893ef2_prof);
+        $__internal_306b911c46b735433d7331b05d2346493865dc05721c5a36cbd323286b05cfce->leave($__internal_306b911c46b735433d7331b05d2346493865dc05721c5a36cbd323286b05cfce_prof);
 
         
-        $__internal_a29302610b8a7c878da7d197ae054f4eb232c5271014d925860c3b4ae9e2fad3->leave($__internal_a29302610b8a7c878da7d197ae054f4eb232c5271014d925860c3b4ae9e2fad3_prof);
+        $__internal_f1e225c1664528164d76438d42e56c2eb5cd20ccb13890e4492883c8a9ca6e11->leave($__internal_f1e225c1664528164d76438d42e56c2eb5cd20ccb13890e4492883c8a9ca6e11_prof);
 
     }
 
@@ -89,11 +89,11 @@ class __TwigTemplate_3b8a787f8f9728348e61a39522a68fa33d1b93308c3e60af506b6c57a3c
 {% block body %}
     {{ include(\"BCPlatformBundle:Advert:form.html.twig\") }}
     <div class=\"row center-align\">
-        <div class=\"offset-s3\">
+        <div class=\"col m4 offset-m4\">
             <p>
-                <i class=\"material-icons left\">warning</i>
-                Votre annonce sera ajoutée automatiquement après la validation du formulaire
-                <i class=\"material-icons right\">warning</i>
+                <span class=\"red-text\"><i class=\"material-icons left\">warning</i></span>
+                Votre annonce sera ajoutée automatiquement après validation
+                <span class=\"red-text\"><i class=\"material-icons right\">warning</i></span>
             </p>
         </div>
     </div>

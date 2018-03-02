@@ -5,29 +5,30 @@
 {% endblock %}
 
 {% block bcplatform_body %}
-
-    <h2>Liste des annonces</h2>
-
-    <ul>
-        {% for advert in listAdverts %}
-            <li>
-                <a href="{{ path('bc_platform_view', {'id':advert.id}) }}">
-                    {{ advert.title }}
-                </a>
-                par {{ advert.author }},
-                le {{ advert.date|date('d/m/Y') }}
-            </li>
-        {% else %}
-            <li>Pas encore d'annonces disponible</li>
-        {% endfor %}
-    </ul>
-
-    <ul class="pagination">
-        {# Fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
-        {% for p in range(1, nbPages) %}
-            <li{% if p == page %} class="active"{% endif %}>
-                <a href="{{ path('bc_platform_home', {'page': p}) }}">{{ p }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row offset-s3 center-align">
+            <h4>Liste des annonces</h4>
+            <ul>
+                {% for advert in listAdverts %}
+                    <li>
+                       <a href="{{ path('bc_platform_view', {'id':advert.id}) }}"><span class="black-text">{{ advert.title }}</span></a>
+                        par {{ advert.author }},
+                        le {{ advert.date|date('d/m/Y') }}
+                    </li>
+                {% else %}
+                    <li>Pas encore d'annonces disponible</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row center-align">
+        <ul class="pagination">
+            {# Fonction range(a, b) qui crée un tableau de valeurs entre a et b#}
+            {% for p in range(1, nbPages) %}
+                <li{% if p == page %} class="active"{% endif %}>
+                    <a href="{{ path('bc_platform_home', {'page': p}) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
